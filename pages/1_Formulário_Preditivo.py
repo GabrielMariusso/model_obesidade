@@ -23,14 +23,12 @@ model = load_model()
 # =========================
 # TÍTULO
 # =========================
-st.title("📋 Formulário Preditivo de Obesidade")
+st.title("Formulário Preditivo de Obesidade")
 
 st.markdown(
     "Preencha os dados abaixo para estimar o **nível de obesidade**, "
     "com base no modelo treinado."
 )
-
-st.divider()
 
 # =========================
 # MAPAS PT-BR → EN (MODELO)
@@ -72,7 +70,7 @@ with st.form("form_obesidade"):
     # =========================
     # 1. DADOS FÍSICOS E CONTEXTO
     # =========================
-    st.markdown("### Dados físicos e contexto:")
+    st.markdown("### 🧍  Dados físicos e contexto:")
 
     col1, col2, col3 = st.columns(3)
 
@@ -117,7 +115,7 @@ with st.form("form_obesidade"):
     # =========================
     # 2. ESTILO DE VIDA (SLIDERS)
     # =========================
-    st.markdown("### Estilo de vida:")
+    st.markdown("###  🏃 Estilo de vida:")
 
     col4, col5, col6 = st.columns(3)
 
@@ -154,7 +152,7 @@ with st.form("form_obesidade"):
     # =========================
     # 3. ALIMENTAÇÃO E HÁBITOS
     # =========================
-    st.markdown("### Alimentação e hábitos:")
+    st.markdown("###  🍽️ Alimentação e hábitos:")
 
     col7, col8, col9 = st.columns(3)
 

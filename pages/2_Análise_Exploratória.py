@@ -25,7 +25,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("📊 Análise Exploratória dos Dados")
+st.title("Análise Exploratória dos Dados")
 st.markdown(
     "Esta seção apresenta a análise exploratória dos dados utilizados "
     "no treinamento do modelo de classificação de obesidade."
@@ -61,7 +61,7 @@ map_obesity_pt = {
 def card(titulo, fig):
     with st.container(border=True):
         st.markdown(f"#### {titulo}")
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig)
         plt.close(fig)
 
 # =========================

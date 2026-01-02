@@ -18,5 +18,3 @@ Este sistema utiliza **Machine Learning (XGBoost)** para:
 
 📌 Use o **menu lateral** para navegar entre as funcionalidades.
 """)
-
-st.info("⚠️ Este sistema é apenas um apoio à decisão e não substitui avaliação médica.")
