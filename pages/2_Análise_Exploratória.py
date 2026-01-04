@@ -37,7 +37,7 @@ st.divider()
 # CONSTANTES VISUAIS
 # =========================
 FIG_SIZE = (5.5, 4)
-palette_gender = {'Male': '#4C72B0', 'Female': '#DD5A8F'}
+palette_gender = {'Homem': '#4C72B0', 'Mulher': '#DD5A8F'}
 
 ordem_obesity = [
     'Insufficient_Weight','Normal_Weight',
@@ -61,7 +61,8 @@ map_obesity_pt = {
 def card(titulo, fig):
     with st.container(border=True):
         st.markdown(f"#### {titulo}")
-        st.pyplot(fig)
+        fig.tight_layout()
+        st.pyplot(fig, use_container_width=True)
         plt.close(fig)
 
 # =========================
@@ -72,6 +73,8 @@ df_tratado = df.copy()
 
 for col in ['Age','FCVC','NCP','CH2O','FAF','TUE']:
     df_tratado[col] = df_tratado[col].round()
+
+df_tratado['Gender'] = df_tratado['Gender'].map({'Male': 'Homem', 'Female': 'Mulher'})
 
 # =====================================================
 # SESSÃO 1 — PERFIL DEMOGRÁFICO E ALIMENTAÇÃO
@@ -90,13 +93,13 @@ with col1:
     df_obese['Faixa etária'] = pd.cut(df_obese['Age'], bins=bins, labels=labels)
 
     piramide = df_obese.groupby(['Faixa etária','Gender']).size().reset_index(name='Total')
-    homens = piramide[piramide['Gender']=='Male'].copy()
-    mulheres = piramide[piramide['Gender']=='Female'].copy()
+    homens = piramide[piramide['Gender']=='Homem'].copy()
+    mulheres = piramide[piramide['Gender']=='Mulher'].copy()
     homens['Total'] *= -1
 
     fig, ax = plt.subplots(figsize=FIG_SIZE)
-    ax.barh(homens['Faixa etária'], homens['Total'], color='#4C72B0', label='Homens')
-    ax.barh(mulheres['Faixa etária'], mulheres['Total'], color='#DD5A8F', label='Mulheres')
+    ax.barh(homens['Faixa etária'], homens['Total'], color='#4C72B0', label='Homem')
+    ax.barh(mulheres['Faixa etária'], mulheres['Total'], color='#DD5A8F', label='Mulher')
     ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: abs(int(x))))
     ax.legend()
 
@@ -105,6 +108,7 @@ with col1:
 with col2:
     fig, ax = plt.subplots(figsize=FIG_SIZE)
     sns.countplot(data=df_tratado, x='FAVC', hue='Gender', palette=palette_gender, ax=ax)
+    ax.set_ylabel("Contagem")
     ax.set_xticklabels(['Não','Sim'])
     card("Consumo de alimentos calóricos", fig)
 
@@ -118,12 +122,14 @@ col3, col4 = st.columns(2)
 with col3:
     fig, ax = plt.subplots(figsize=FIG_SIZE)
     sns.countplot(data=df_tratado, x='FCVC', hue='Gender', palette=palette_gender, ax=ax)
+    ax.set_ylabel("Contagem")
     ax.set_xticklabels(['Raramente','Às vezes','Sempre'])
     card("Consumo de vegetais", fig)
 
 with col4:
     fig, ax = plt.subplots(figsize=FIG_SIZE)
     sns.countplot(data=df_tratado, x='NCP', hue='Gender', palette=palette_gender, ax=ax)
+    ax.set_ylabel("Contagem")
     card("Número de refeições por dia", fig)
 
 # =====================================================
@@ -143,12 +149,14 @@ with col5:
         palette=palette_gender,
         ax=ax
     )
+    ax.set_ylabel("Contagem")
     ax.set_xticklabels(['Não','Às vezes','Frequentemente','Sempre'])
     card("Consumo de álcool", fig)
 
 with col6:
     fig, ax = plt.subplots(figsize=FIG_SIZE)
     sns.countplot(data=df_tratado, x='TUE', hue='Gender', palette=palette_gender, ax=ax)
+    ax.set_ylabel("Contagem")
     ax.set_xticklabels(['0–2h','3–5h','>5h'])
     card("Tempo de uso de dispositivos eletrônicos", fig)
 
@@ -214,10 +222,8 @@ col9, col10 = st.columns(2)
 with col9:
     df_faf_gender = df_tratado.copy()
 
-    df_faf_gender['Gênero'] = df_faf_gender['Gender'].map({
-        'Male': 'Homens',
-        'Female': 'Mulheres'
-    })
+    # A coluna 'Gender' já foi traduzida para 'Homem'/'Mulher' no início do script
+    df_faf_gender['Gênero'] = df_faf_gender['Gender']
 
     df_faf_gender['Frequência'] = df_faf_gender['FAF'].map({
         0: 'Nenhuma',
@@ -246,7 +252,7 @@ with col9:
         x='Frequência',
         y='percentual',
         hue='Gênero',
-        palette={'Homens': '#4C72B0', 'Mulheres': '#DD5A8F'},
+        palette={'Homem': '#4C72B0', 'Mulher': '#DD5A8F'},
         ax=ax
     )
 

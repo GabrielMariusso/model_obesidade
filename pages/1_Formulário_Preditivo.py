@@ -122,29 +122,29 @@ with st.form("form_obesidade"):
     with col4:
         FAF = st.slider(
             "Frequência de atividade física",
-            0.0, 3.0, 1.0
+            0, 3, 1
         )
 
         FCVC = st.slider(
             "Consumo de vegetais",
-            1.0, 3.0, 2.0
+            1, 3, 2
         )
 
     with col5:
         TUE = st.slider(
             "Tempo de uso de tecnologia",
-            0.0, 3.0, 1.0
+            0, 3, 1
         )
 
         NCP = st.slider(
             "Número de refeições por dia",
-            1.0, 4.0, 3.0
+            1, 4, 3
         )
 
     with col6:
         CH2O = st.slider(
             "Consumo diário de água",
-            1.0, 3.0, 2.0
+            1, 3, 2
         )
 
     st.divider()
