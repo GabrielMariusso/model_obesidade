@@ -1,10 +1,23 @@
 # 🏥 Sistema Preditivo de Obesidade
 
+Projeto desenvolvido como parte do **Tech Challenge – Fase 4**, do curso de  
+**Pós-Graduação em Data Analytics** da **FIAP (Faculdade de Informática e Administração Paulista)**.
+
+## 👥 Integrantes do Grupo
+- **Gabriel Mariusso Campachi**
+- **José Eduardo Augusto Couto Fontes**
+- **Mayara Soares Santos**
+
+---
+
+## 📌 Sobre o Projeto
+
 Este projeto apresenta uma **aplicação interativa desenvolvida em Streamlit**
 para **predição do nível de obesidade**, utilizando técnicas de **Machine Learning**.
 
 O sistema foi desenvolvido como parte do **Tech Challenge – Fase 4 (Data Analytics)**,
 com foco em **apoio à decisão clínica**.
+
 
 ---
 
